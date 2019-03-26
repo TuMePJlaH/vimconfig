@@ -19,9 +19,13 @@ if has("gui_running")
   set guifont=Courier_New:h11:cDEFAULT
 endif
 "------------------------------------------------------------------
+"if expand('%:e') == "py"
+  "map <F5> :w<CR> :!python "%:p"<CR>
+"endif
+"------------------------------------------------------------------
 " NERDTree config
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-nmap <C-n> :NERDTreeToggle<CR>
+"nmap <C-n> :NERDTreeToggle<CR>
 "------------------------------------------------------------------
 " for YouCompleteMe
 " set encoding=utf-8
@@ -36,6 +40,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'terryma/vim-multiple-cursors'
 " Plugin 'Valloric/YouCompleteMe'
 
 " Plugin 'klen/python-mode'
