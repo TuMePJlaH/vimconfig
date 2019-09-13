@@ -13,11 +13,15 @@ highlight ColorColumn ctermbg=8
 highlight ColorColumn guibg=Gray
 syntax on
 colorscheme molokai
+set wildmenu
 if has("gui_running")
   set cursorline
   "autocmd BufEnter *.py colorscheme molokai
   set guifont=Courier_New:h11:cDEFAULT
 endif
+
+vmap cc :norm i#<CR>
+vmap uc :norm ^x<CR>
 "------------------------------------------------------------------
 "if expand('%:e') == "py"
   "map <F5> :w<CR> :!python "%:p"<CR>
@@ -41,7 +45,11 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 " Plugin 'Valloric/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'itchyny/lightline.vim'
 
 " Plugin 'klen/python-mode'
 
@@ -78,3 +86,16 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "------------------------------------------------------------------
+" For UltiSnips
+let g:UltiSnipsExpandTrigger="<c-a>"
+let g:UltiSnipsJumpForwardTrigger="<c-a>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" display lightline
+set laststatus=2
+set noshowmode
+
+let g:ycm_confirm_extra_conf=0
+
+"map <C-]> :YcmCompleter GoToDeclaration<CR>
+map <C-]> :rightbelow vsplit \| YcmCompleter GoTo<CR>
