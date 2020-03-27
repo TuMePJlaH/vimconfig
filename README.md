@@ -6,3 +6,5 @@
 * [UltiSnips](https://github.com/SirVer/ultisnips)
 * [LightLine](https://github.com/itchyny/lightline.vim)
 * [MultipleCursor](https://github.com/terryma/vim-multiple-cursors)
+### Colors:
+# [OneDakr](https://github.com/joshdick/onedark.vim)
