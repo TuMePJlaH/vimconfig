@@ -8,7 +8,8 @@ set number
 set noswapfile
 set nowritebackup
 set nobackup
-set colorcolumn=110
+set colorcolumn=100
+set pastetoggle=<F3>
 highlight ColorColumn ctermbg=8
 highlight ColorColumn guibg=Gray
 syntax on
@@ -26,6 +27,10 @@ vmap uc :norm ^x<CR>
 "if expand('%:e') == "py"
   "map <F5> :w<CR> :!python "%:p"<CR>
 "endif
+if expand('%:e') == "cpp" || expand('%:e') == "c" || expand('%:e') == "h" || expand('%:e') == "hpp"
+  vmap cc :norm i//<CR>
+  vmap uc :norm ^xx<CR>
+endif
 "------------------------------------------------------------------
 " NERDTree config
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
