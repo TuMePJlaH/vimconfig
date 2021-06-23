@@ -1,7 +1,8 @@
 "------------------------------------------------------------------
-set tabstop=4
-set shiftwidth=4
-set expandtab
+filetype plugin indent on
+set tabstop=4 " show existing tab with 4 spaces widdth
+set shiftwidth=4 " when indenting with '>', use 4 spaces width
+set expandtab " on pressing tab, insert 4 spaces
 set smarttab
 set smartindent
 set number
@@ -20,7 +21,12 @@ if has("gui_running")
   "autocmd BufEnter *.py colorscheme molokai
   set guifont=Courier_New:h11:cDEFAULT
 endif
+"------------------------------------------------------------------
+" clang-format
+map <C-K> :py3f ~/.vim/scripts/clang-format.py<cr>
+imap <C-K> <c-o>:py3f ~/.vim/scripts/clang-format.py<cr>
 
+"------------------------------------------------------------------
 vmap cc :norm i#<CR>
 vmap uc :norm ^x<CR>
 "------------------------------------------------------------------
