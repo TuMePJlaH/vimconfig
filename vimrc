@@ -121,3 +121,5 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
+
+let g:ycm_show_diagnostics_ui = 0
