@@ -1,6 +1,6 @@
 "------------------------------------------------------------------
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 set smarttab
 set smartindent
@@ -27,7 +27,7 @@ vmap uc :norm ^x<CR>
 "if expand('%:e') == "py"
   "map <F5> :w<CR> :!python "%:p"<CR>
 "endif
-if expand('%:e') == "cpp" || expand('%:e') == "c" || expand('%:e') == "h" || expand('%:e') == "hpp"
+if expand('%:e') == "cpp" || expand('%:e') == "c" || expand('%:e') == "h" || expand('%:e') == "hpp" || expand('%:e') == "cu"
   vmap cc :norm i//<CR>
   vmap uc :norm ^xx<CR>
 endif
