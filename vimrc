@@ -27,19 +27,25 @@ map <C-K> :py3f ~/.vim/scripts/clang-format.py<cr>
 imap <C-K> <c-o>:py3f ~/.vim/scripts/clang-format.py<cr>
 
 "------------------------------------------------------------------
-vmap cc :norm i#<CR>
-vmap uc :norm ^x<CR>
+"vmap cc :norm i#<CR>
+"vmap uc :norm ^x<CR>
+vmap cc :call Comment()<CR>
+vmap uc :call UnComment()<CR>
 "------------------------------------------------------------------
 "if expand('%:e') == "py"
   "map <F5> :w<CR> :!python "%:p"<CR>
 "endif
-if expand('%:e') == "cpp" || expand('%:e') == "c" || expand('%:e') == "h" || expand('%:e') == "hpp" || expand('%:e') == "cu"
-  vmap cc :norm i//<CR>
-  vmap uc :norm ^xx<CR>
-endif
+"if expand('%:e') == "cpp" || expand('%:e') == "c" || expand('%:e') == "h" || expand('%:e') == "hpp" || expand('%:e') == "cu"
+"  vmap cc :norm i//<CR>
+"  vmap uc :norm ^xx<CR>
+"endif
 "------------------------------------------------------------------
 " NERDTree config
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 "nmap <C-n> :NERDTreeToggle<CR>
 "------------------------------------------------------------------
 " for YouCompleteMe
@@ -129,3 +135,31 @@ if (empty($TMUX))
 endif
 
 let g:ycm_show_diagnostics_ui = 0
+
+:function Comment()
+:  let c_type = ['cpp', 'c', 'h', 'hpp', 'cu', 'cc']
+:  let type = expand('%:e')
+:  let idx = index(c_type, type)
+:  if idx != -1
+:    :norm i//
+:  endif
+:  let py_type = ['py']
+:  let idx = index(py_type, type)
+:  if idx != -1
+:    :norm i#
+:  endif
+:endfunction
+
+:function UnComment()
+:  let c_type = ['cpp', 'c', 'h', 'hpp', 'cu', 'cc']
+:  let type = expand('%:e')
+:  let idx = index(c_type, type)
+:  if idx != -1
+:    :norm ^xx
+:  endif
+:  let py_type = ['py']
+:  let idx = index(py_type, type)
+:  if idx != -1
+:    :norm ^x
+:  endif
+:endfunction
