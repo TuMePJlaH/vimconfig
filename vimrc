@@ -42,9 +42,11 @@ vmap uc :call UnComment()<CR>
 "------------------------------------------------------------------
 " NERDTree config
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
+"nnoremap <leader>n :NERDTreeFocus<CR>
+execute "set <M-n>=\en"
+nnoremap <M-n> :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
+"nnoremap <C-t> :NERDTree<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 "nmap <C-n> :NERDTreeToggle<CR>
 "------------------------------------------------------------------
@@ -61,13 +63,15 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'terryma/vim-multiple-cursors'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'itchyny/lightline.vim'
 Plugin 'sheerun/vim-polyglot'
+
+Plugin 'ludovicchabant/vim-gutentags'
 
 " Plugin 'klen/python-mode'
 
@@ -116,7 +120,7 @@ set noshowmode
 let g:ycm_confirm_extra_conf=0
 
 "map <C-]> :YcmCompleter GoToDeclaration<CR>
-map <C-]> :rightbelow vsplit \| YcmCompleter GoTo<CR>
+"map <C-]> :rightbelow vsplit \| YcmCompleter GoTo<CR>
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
@@ -163,3 +167,19 @@ let g:ycm_show_diagnostics_ui = 0
 :    :norm ^x
 :  endif
 :endfunction
+
+":function! ToTag()
+":  if filereadable("tags")
+"":    :rightbelow vsplit 
+":    :rightbelow vert winc ] 
+"":    :exec("tag ".expand("<cword>"))
+":  endif
+":endfunction
+
+"map <C-]> :rightbelow vsplit <CR>:exec("tag ".expand("<cword>"))<CR>
+nnoremap <C-w><C-]> <C-]><CR>
+"nnoremap <C-]> :call ToTag()<CR>
+nnoremap <C-]> :rightbelow vert winc ]<CR>
+"vs <C-R><C-W><CR> - inser work under cursor in command line
+let g:gutentags_project_root = ['tags']
+let g:gutentags_cache_dir = "~/tmp/tag_cache/"
