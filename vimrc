@@ -46,8 +46,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 execute "set <M-n>=\en"
 nnoremap <M-n> :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
-"nnoremap <C-t> :NERDTree<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <C-w>n :NERDTreeRefreshRoot<CR>
+"nnoremap <C-t> :NERDTree<CR>
 "nmap <C-n> :NERDTreeToggle<CR>
 "------------------------------------------------------------------
 " for YouCompleteMe
@@ -181,5 +182,5 @@ nnoremap <C-w><C-]> <C-]><CR>
 "nnoremap <C-]> :call ToTag()<CR>
 nnoremap <C-]> :rightbelow vert winc ]<CR>
 "vs <C-R><C-W><CR> - inser work under cursor in command line
-let g:gutentags_project_root = ['tags']
-let g:gutentags_cache_dir = "~/tmp/tag_cache/"
+"let g:gutentags_project_root = ['tags']
+let g:gutentags_cache_dir = "~/.cache/tags/"
