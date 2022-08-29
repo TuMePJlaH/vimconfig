@@ -9,7 +9,7 @@ set number
 set noswapfile
 set nowritebackup
 set nobackup
-set colorcolumn=100
+set colorcolumn=120
 set pastetoggle=<F3>
 highlight ColorColumn ctermbg=8
 highlight ColorColumn guibg=Gray
@@ -20,6 +20,13 @@ if has("gui_running")
   set cursorline
   "autocmd BufEnter *.py colorscheme molokai
   set guifont=Courier_New:h11:cDEFAULT
+endif
+
+" for correct collor in tmux
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
 endif
 "------------------------------------------------------------------
 " clang-format
